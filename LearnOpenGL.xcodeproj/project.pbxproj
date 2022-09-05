@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E6885F728C4339E00D057B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E6885F628C4339E00D057B5 /* main.cpp */; };
 		4E6885FF28C433B300D057B5 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6885FE28C433B300D057B5 /* OpenGL.framework */; };
 		4E68860128C433BC00D057B5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860028C433BC00D057B5 /* CoreFoundation.framework */; };
 		4E68860328C433C900D057B5 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860228C433C900D057B5 /* libGLEW.2.2.0.dylib */; };
 		4E68860528C433D400D057B5 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860428C433D400D057B5 /* libglfw.3.3.dylib */; };
 		4E68862728C4591000D057B5 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E68862628C4591000D057B5 /* glad.c */; };
+		4EAE22A128C64B0600E0A419 /* UseShaderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229F28C64AC600E0A419 /* UseShaderObject.cpp */; };
+		4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229D28C644C300E0A419 /* Shader.hpp */; };
+		4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229C28C644C300E0A419 /* Shader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,13 +31,20 @@
 
 /* Begin PBXFileReference section */
 		4E6885F328C4339E00D057B5 /* LearnOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E6885F628C4339E00D057B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4E6885F628C4339E00D057B5 /* HelloTriangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelloTriangle.cpp; sourceTree = "<group>"; };
 		4E6885FE28C433B300D057B5 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		4E68860028C433BC00D057B5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		4E68860228C433C900D057B5 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../opt/homebrew/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 		4E68860428C433D400D057B5 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		4E68862628C4591000D057B5 /* glad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 		4E68862828C45DBD00D057B5 /* LearnOpenGL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnOpenGL.entitlements; sourceTree = "<group>"; };
+		4EAE229328C637AA00E0A419 /* LearnShaders.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LearnShaders.cpp; sourceTree = "<group>"; };
+		4EAE229728C6387800E0A419 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		4EAE229C28C644C300E0A419 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		4EAE229D28C644C300E0A419 /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		4EAE229F28C64AC600E0A419 /* UseShaderObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UseShaderObject.cpp; sourceTree = "<group>"; };
+		4EAE22A428C64B3F00E0A419 /* shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
+		4EAE22A528C64B5600E0A419 /* shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +82,13 @@
 		4E6885F528C4339E00D057B5 /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				4EAE229A28C63AB000E0A419 /* LearnShader */,
+				4EAE229928C63AA100E0A419 /* HelloTriangle */,
 				4E68862828C45DBD00D057B5 /* LearnOpenGL.entitlements */,
-				4E6885F628C4339E00D057B5 /* main.cpp */,
 				4E68862628C4591000D057B5 /* glad.c */,
+				4EAE229728C6387800E0A419 /* Common.h */,
+				4EAE229C28C644C300E0A419 /* Shader.cpp */,
+				4EAE229D28C644C300E0A419 /* Shader.hpp */,
 			);
 			path = LearnOpenGL;
 			sourceTree = "<group>";
@@ -89,6 +102,33 @@
 				4E6885FE28C433B300D057B5 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4EAE229928C63AA100E0A419 /* HelloTriangle */ = {
+			isa = PBXGroup;
+			children = (
+				4E6885F628C4339E00D057B5 /* HelloTriangle.cpp */,
+			);
+			path = HelloTriangle;
+			sourceTree = "<group>";
+		};
+		4EAE229A28C63AB000E0A419 /* LearnShader */ = {
+			isa = PBXGroup;
+			children = (
+				4EAE22A328C64B1600E0A419 /* shader */,
+				4EAE229328C637AA00E0A419 /* LearnShaders.cpp */,
+				4EAE229F28C64AC600E0A419 /* UseShaderObject.cpp */,
+			);
+			path = LearnShader;
+			sourceTree = "<group>";
+		};
+		4EAE22A328C64B1600E0A419 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+				4EAE22A428C64B3F00E0A419 /* shader.vs */,
+				4EAE22A528C64B5600E0A419 /* shader.fs */,
+			);
+			path = shader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +188,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E6885F728C4339E00D057B5 /* main.cpp in Sources */,
+				4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */,
+				4EAE22A128C64B0600E0A419 /* UseShaderObject.cpp in Sources */,
+				4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */,
 				4E68862728C4591000D057B5 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

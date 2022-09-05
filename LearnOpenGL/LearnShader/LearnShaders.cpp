@@ -1,45 +1,68 @@
 //
-//  main.cpp
+//  LearnShaders.cpp
 //  LearnOpenGL
 //
-//  Created by Loyio Hex on 9/4/22.
+//  Created by Loyio Hex on 9/5/22.
 //
 
-#include <glad/glad.h>
-#define GL_SILENCE_DEPRECATION
-#include <GLFW/glfw3.h>
-#include <iostream>
+#include "Common.h"
 
 // shader
+//const char *vertexShaderSource = "#version 330 core\n"
+//    "layout (location = 0) in vec3 aPos;\n"
+//    "out vec4 vertexColor;\n"
+//    "void main()\n"
+//    "{\n"
+//    "   gl_Position = vec4(aPos, 1.0);\n"
+//    "   vertexColor = vec4(0.5, 0.0, 0.0, 1.0);\n"
+//    "}\0";
+
+// 更多属性
 const char *vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
+    "layout (location = 1) in vec3 aColor;\n"
+    "out vec3 ourColor;\n"
     "void main()\n"
     "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "   gl_Position = vec4(aPos, 1.0);\n"
+    "   ourColor = aColor;\n"
     "}\0";
 
+
+//const char *fragmentShaderSource = "#version 330 core\n"
+//    "out vec4 FragColor;\n"
+//    "in vec4 vertexColor;\n"
+//    "void main()\n"
+//    "{\n"
+//    "   FragColor = vertexColor;\n"
+//    "}\n\0";
+
+
+// uniform
+//const char *fragmentShaderSource = "#version 330 core\n"
+//    "out vec4 FragColor;\n"
+//    "uniform vec4 ourColor;\n"
+//    "void main()\n"
+//    "{\n"
+//    "   FragColor = ourColor;\n"
+//    "}\n\0";
+
+// 更多属性
 const char *fragmentShaderSource = "#version 330 core\n"
     "out vec4 FragColor;\n"
+    "in vec3 ourColor;\n"
     "void main()\n"
     "{\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "   FragColor = vec4(ourColor, 1.0);\n"
     "}\n\0";
-
-
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
-int main(int argc, const char * argv[]) {
-    // 初始化,设置版本
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    
-#ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
+// LearnShaders()
+int main()
+{
+    Initialize();
     
     GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL - Loyio", NULL, NULL);
     
@@ -59,10 +82,9 @@ int main(int argc, const char * argv[]) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
-    
-    glViewport(0, 0, 800, 600);
-    
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    int nrAttributes;
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
+    std::cout << "Maximum nr of vertex attributes supported: " << nrAttributes << std::endl;
     
     // 顶点着色器
     unsigned int vertexShader;
@@ -115,39 +137,12 @@ int main(int argc, const char * argv[]) {
     
     
     // 三角形
-//    float vertices[] =
-//    {
-//        -0.5f, -0.5f, 0.0f,
-//        0.5f, -0.5f, 0.0f,
-//        0.0f, 0.5f, 0.0f
-//    };
-    
-    // 矩形
-//    float vertices[] =
-//    {
-//        0.5f, 0.5f, 0.0f, // 右上
-//        0.5f, -0.5f, 0.0f, // 右下
-//        -0.5f, -0.5f, 0.0f, // 左下
-//        -0.5f, 0.5f, 0.0f //左上
-//    };
-//
-//    unsigned int indices[] =
-//    {
-//        0, 1, 3, // 三角形1
-//        1, 2, 3 // 三角形2
-//    };
-    
-    // practice 1 more vertex
     float vertices[] =
     {
-        // first triangle
-        -0.9f, -0.5f, 0.0f,  // left
-        -0.0f, -0.5f, 0.0f,  // right
-        -0.45f, 0.5f, 0.0f,  // top
-        // second triangle
-         0.0f, -0.5f, 0.0f,  // left
-         0.9f, -0.5f, 0.0f,  // right
-         0.45f, 0.5f, 0.0f   // top
+         // 位置              //颜色
+         0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,
+         0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f
     };
     
     
@@ -167,8 +162,14 @@ int main(int argc, const char * argv[]) {
 //    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 //    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    // 位置属性
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    
+    // 颜色属性
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
@@ -187,14 +188,17 @@ int main(int argc, const char * argv[]) {
         
         glUseProgram(shaderProgram);
         
+        // unifrom ourColor
+        float timeValue = glfwGetTime();
+        float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
+        int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+        
+        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+        
         // 三角形
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 6);
         
-        
-        // 矩形
-//        glBindVertexArray(VAO);
-//        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
