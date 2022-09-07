@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E54776328C78B59002546B7 /* stb_image.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E54776228C78B35002546B7 /* stb_image.h */; };
+		4E54776528C78B84002546B7 /* UseTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E54776428C78B84002546B7 /* UseTexture.cpp */; };
 		4E6885FF28C433B300D057B5 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6885FE28C433B300D057B5 /* OpenGL.framework */; };
 		4E68860128C433BC00D057B5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860028C433BC00D057B5 /* CoreFoundation.framework */; };
 		4E68860328C433C900D057B5 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860228C433C900D057B5 /* libGLEW.2.2.0.dylib */; };
 		4E68860528C433D400D057B5 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860428C433D400D057B5 /* libglfw.3.3.dylib */; };
 		4E68862728C4591000D057B5 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E68862628C4591000D057B5 /* glad.c */; };
-		4EAE22A128C64B0600E0A419 /* UseShaderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229F28C64AC600E0A419 /* UseShaderObject.cpp */; };
 		4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229D28C644C300E0A419 /* Shader.hpp */; };
 		4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229C28C644C300E0A419 /* Shader.cpp */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E54776228C78B35002546B7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		4E54776428C78B84002546B7 /* UseTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UseTexture.cpp; sourceTree = "<group>"; };
+		4E54776628C78BEA002546B7 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
+		4E54776728C78F0E002546B7 /* texture.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = texture.vs; sourceTree = "<group>"; };
+		4E54776828C78F81002546B7 /* texture.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = texture.fs; sourceTree = "<group>"; };
+		4E54776928C79AD9002546B7 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		4E6885F328C4339E00D057B5 /* LearnOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E6885F628C4339E00D057B5 /* HelloTriangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelloTriangle.cpp; sourceTree = "<group>"; };
 		4E6885FE28C433B300D057B5 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -62,6 +69,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E54776128C787E5002546B7 /* LearnTextures */ = {
+			isa = PBXGroup;
+			children = (
+				4E54776928C79AD9002546B7 /* awesomeface.png */,
+				4E54776628C78BEA002546B7 /* container.jpg */,
+				4E54776428C78B84002546B7 /* UseTexture.cpp */,
+				4E54776728C78F0E002546B7 /* texture.vs */,
+				4E54776828C78F81002546B7 /* texture.fs */,
+			);
+			path = LearnTextures;
+			sourceTree = "<group>";
+		};
 		4E6885EA28C4339E00D057B5 = {
 			isa = PBXGroup;
 			children = (
@@ -82,11 +101,13 @@
 		4E6885F528C4339E00D057B5 /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				4E54776128C787E5002546B7 /* LearnTextures */,
 				4EAE229A28C63AB000E0A419 /* LearnShader */,
 				4EAE229928C63AA100E0A419 /* HelloTriangle */,
 				4E68862828C45DBD00D057B5 /* LearnOpenGL.entitlements */,
 				4E68862628C4591000D057B5 /* glad.c */,
 				4EAE229728C6387800E0A419 /* Common.h */,
+				4E54776228C78B35002546B7 /* stb_image.h */,
 				4EAE229C28C644C300E0A419 /* Shader.cpp */,
 				4EAE229D28C644C300E0A419 /* Shader.hpp */,
 			);
@@ -188,10 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E54776328C78B59002546B7 /* stb_image.h in Sources */,
 				4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */,
-				4EAE22A128C64B0600E0A419 /* UseShaderObject.cpp in Sources */,
 				4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */,
 				4E68862728C4591000D057B5 /* glad.c in Sources */,
+				4E54776528C78B84002546B7 /* UseTexture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
