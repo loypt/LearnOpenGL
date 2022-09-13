@@ -15,7 +15,7 @@
 		4E68862728C4591000D057B5 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E68862628C4591000D057B5 /* glad.c */; };
 		4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229D28C644C300E0A419 /* Shader.hpp */; };
 		4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229C28C644C300E0A419 /* Shader.cpp */; };
-		4EB5017D28CCCD26008655C0 /* 3DCoordinateSystems.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5017C28CCCD26008655C0 /* 3DCoordinateSystems.cpp */; };
+		4EED312F28D0C5760048ABBB /* CameraSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EED312E28D0C5760048ABBB /* CameraSystem.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +58,9 @@
 		4EB5017C28CCCD26008655C0 /* 3DCoordinateSystems.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 3DCoordinateSystems.cpp; sourceTree = "<group>"; };
 		4EB5017E28CCD16D008655C0 /* coordinate.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = coordinate.vs; sourceTree = "<group>"; };
 		4EB5017F28CCD1D8008655C0 /* coordinate.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = coordinate.fs; sourceTree = "<group>"; };
+		4EED312E28D0C5760048ABBB /* CameraSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CameraSystem.cpp; sourceTree = "<group>"; };
+		4EED313028D0C5A30048ABBB /* camera.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = camera.vs; sourceTree = "<group>"; };
+		4EED313128D0C5B00048ABBB /* camera.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = camera.fs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,7 @@
 		4E6885F528C4339E00D057B5 /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				4EED312D28D0C53F0048ABBB /* CameraView */,
 				4EB5017B28CCA51D008655C0 /* CoordinateSystem */,
 				4EB5017428CC92D4008655C0 /* TransformationsBasic */,
 				4E54776128C787E5002546B7 /* LearnTextures */,
@@ -180,6 +184,16 @@
 			path = CoordinateSystem;
 			sourceTree = "<group>";
 		};
+		4EED312D28D0C53F0048ABBB /* CameraView */ = {
+			isa = PBXGroup;
+			children = (
+				4EED312E28D0C5760048ABBB /* CameraSystem.cpp */,
+				4EED313028D0C5A30048ABBB /* camera.vs */,
+				4EED313128D0C5B00048ABBB /* camera.fs */,
+			);
+			path = CameraView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,11 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EB5017D28CCCD26008655C0 /* 3DCoordinateSystems.cpp in Sources */,
 				4E54776328C78B59002546B7 /* stb_image.h in Sources */,
 				4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */,
 				4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */,
 				4E68862728C4591000D057B5 /* glad.c in Sources */,
+				4EED312F28D0C5760048ABBB /* CameraSystem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
