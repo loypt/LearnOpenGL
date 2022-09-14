@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0122A728D21D2200110423 /* camera.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E0122A628D21CF100110423 /* camera.h */; };
 		4E54776328C78B59002546B7 /* stb_image.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E54776228C78B35002546B7 /* stb_image.h */; };
 		4E6885FF28C433B300D057B5 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6885FE28C433B300D057B5 /* OpenGL.framework */; };
 		4E68860128C433BC00D057B5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860028C433BC00D057B5 /* CoreFoundation.framework */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E0122A628D21CF100110423 /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		4E54776228C78B35002546B7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		4E54776428C78B84002546B7 /* UseTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UseTexture.cpp; sourceTree = "<group>"; };
 		4E54776628C78BEA002546B7 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				4E54776228C78B35002546B7 /* stb_image.h */,
 				4EAE229C28C644C300E0A419 /* Shader.cpp */,
 				4EAE229D28C644C300E0A419 /* Shader.hpp */,
+				4E0122A628D21CF100110423 /* camera.h */,
 			);
 			path = LearnOpenGL;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E0122A728D21D2200110423 /* camera.h in Sources */,
 				4E54776328C78B59002546B7 /* stb_image.h in Sources */,
 				4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */,
 				4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */,
