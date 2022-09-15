@@ -62,13 +62,13 @@ int main()
     // 注册回调函数
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    
+    // 设置鼠标
+    glfwSetScrollCallback(window, scroll_callback);
     
     // 开启深度测试(Z-Buffer)
     glEnable(GL_DEPTH_TEST);
-    
-    // 设置鼠标
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    glfwSetScrollCallback(window, scroll_callback);
     
 //    // 摄像机位置
 //    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
@@ -84,10 +84,10 @@ int main()
 //    glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
     
     // LookAt矩阵
-    glm::mat4 view = glm::mat4(1.0f);
-    view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f),
-                       glm::vec3(0.0f, 0.0f, 0.0f),
-                       glm::vec3(0.0f, 1.0f, 0.0f));
+//    glm::mat4 view = glm::mat4(1.0f);
+//    view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f),
+//                       glm::vec3(0.0f, 0.0f, 0.0f),
+//                       glm::vec3(0.0f, 1.0f, 0.0f));
     
     // 导入编译Shader
     Shader ourShader("CameraView/camera.vs", "CameraView/camera.fs");
@@ -264,12 +264,12 @@ int main()
 //        float radius = 10.0f;
 //        float camX = static_cast<float>(sin(glfwGetTime()) * radius);
 //        float camZ = static_cast<float>(cos(glfwGetTime()) * radius);
-        view  = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp); // 摄像机位置, 距离, 上轴
-        ourShader.setMat4("view", view);
         
-        glm::mat4 projection = glm::perspective(glm::radians(fov), (float)800/(float)600, 0.1f, 100.f);
+        glm::mat4 projection = glm::perspective(glm::radians(fov), (float)800/(float)600, 0.1f, 100.0f);
         ourShader.setMat4("projection", projection);
         
+        glm::mat4 view  = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp); // 摄像机位置, 距离, 上轴
+        ourShader.setMat4("view", view);
         
         // 渲染木箱
         glBindVertexArray(VAO);
@@ -337,7 +337,7 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
     lastX = xpos;
     lastY = ypos;
     
-    float sensitivity = 0.05f; // 灵敏度
+    float sensitivity = 0.01f; // 灵敏度
     xoffset *= sensitivity;
     yoffset *= sensitivity;
     
@@ -351,9 +351,9 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
         pitch = 89.0f;
     
     glm::vec3 front;
-    front.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
+    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     front.y = sin(glm::radians(pitch));
-    front.z = sin(glm::radians(pitch)) * sin(glm::radians(yaw));
+    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(front);
 }
 
