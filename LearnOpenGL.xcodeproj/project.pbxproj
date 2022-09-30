@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E0122A728D21D2200110423 /* camera.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E0122A628D21CF100110423 /* camera.h */; };
+		4E03810328E73DCD008B0D54 /* SimpleLightingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E03810228E73DCD008B0D54 /* SimpleLightingScene.cpp */; };
 		4E54776328C78B59002546B7 /* stb_image.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E54776228C78B35002546B7 /* stb_image.h */; };
 		4E6885FF28C433B300D057B5 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6885FE28C433B300D057B5 /* OpenGL.framework */; };
 		4E68860128C433BC00D057B5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860028C433BC00D057B5 /* CoreFoundation.framework */; };
@@ -16,7 +17,6 @@
 		4E68862728C4591000D057B5 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E68862628C4591000D057B5 /* glad.c */; };
 		4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229D28C644C300E0A419 /* Shader.hpp */; };
 		4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229C28C644C300E0A419 /* Shader.cpp */; };
-		4EED312F28D0C5760048ABBB /* CameraSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EED312E28D0C5760048ABBB /* CameraSystem.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +33,12 @@
 
 /* Begin PBXFileReference section */
 		4E0122A628D21CF100110423 /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
+		4E0380FE28E73CBC008B0D54 /* CameraSystemNew.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CameraSystemNew.cpp; sourceTree = "<group>"; };
+		4E03810228E73DCD008B0D54 /* SimpleLightingScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleLightingScene.cpp; sourceTree = "<group>"; };
+		4E03810428E73EB1008B0D54 /* colors.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = colors.vs; sourceTree = "<group>"; };
+		4E03810528E73EC1008B0D54 /* colors.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = colors.fs; sourceTree = "<group>"; };
+		4E03810628E73EFC008B0D54 /* light_cube.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light_cube.vs; sourceTree = "<group>"; };
+		4E03810728E73F08008B0D54 /* light_cube.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light_cube.fs; sourceTree = "<group>"; };
 		4E54776228C78B35002546B7 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		4E54776428C78B84002546B7 /* UseTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UseTexture.cpp; sourceTree = "<group>"; };
 		4E54776628C78BEA002546B7 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
@@ -80,6 +86,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E03810028E73D1E008B0D54 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				4E03810128E73D96008B0D54 /* LightingScene */,
+			);
+			path = Light;
+			sourceTree = "<group>";
+		};
+		4E03810128E73D96008B0D54 /* LightingScene */ = {
+			isa = PBXGroup;
+			children = (
+				4E03810228E73DCD008B0D54 /* SimpleLightingScene.cpp */,
+				4E03810728E73F08008B0D54 /* light_cube.fs */,
+				4E03810428E73EB1008B0D54 /* colors.vs */,
+				4E03810528E73EC1008B0D54 /* colors.fs */,
+				4E03810628E73EFC008B0D54 /* light_cube.vs */,
+			);
+			path = LightingScene;
+			sourceTree = "<group>";
+		};
 		4E54776128C787E5002546B7 /* LearnTextures */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +138,7 @@
 		4E6885F528C4339E00D057B5 /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				4E03810028E73D1E008B0D54 /* Light */,
 				4EED312D28D0C53F0048ABBB /* CameraView */,
 				4EB5017B28CCA51D008655C0 /* CoordinateSystem */,
 				4EB5017428CC92D4008655C0 /* TransformationsBasic */,
@@ -193,6 +220,7 @@
 				4EED312E28D0C5760048ABBB /* CameraSystem.cpp */,
 				4EED313028D0C5A30048ABBB /* camera.vs */,
 				4EED313128D0C5B00048ABBB /* camera.fs */,
+				4E0380FE28E73CBC008B0D54 /* CameraSystemNew.cpp */,
 			);
 			path = CameraView;
 			sourceTree = "<group>";
@@ -259,7 +287,7 @@
 				4EAE22A628C64CFC00E0A419 /* Shader.cpp in Sources */,
 				4EAE22A228C64B0600E0A419 /* Shader.hpp in Sources */,
 				4E68862728C4591000D057B5 /* glad.c in Sources */,
-				4EED312F28D0C5760048ABBB /* CameraSystem.cpp in Sources */,
+				4E03810328E73DCD008B0D54 /* SimpleLightingScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
