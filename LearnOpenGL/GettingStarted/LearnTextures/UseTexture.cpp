@@ -8,7 +8,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "Common.h"
-#include "Shader.hpp"
+#include "Shader.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -37,7 +37,7 @@ int main()
     }
     
     // 导入编译Shader
-    Shader ourShader("LearnTextures/texture.vs", "LearnTextures/texture.fs");
+    Shader ourShader("GettingStarted/LearnTextures/texture.vs", "GettingStarted/LearnTextures/texture.fs");
     
     // 坐标
     float vertices[] =
@@ -95,7 +95,7 @@ int main()
     
     // 导入图像
     int width, height, nrChannels;
-    unsigned char *data = stbi_load("LearnTextures/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("GettingStarted/LearnTextures/container.jpg", &width, &height, &nrChannels, 0);
     if(data)
     {
         // 生成纹理
@@ -126,7 +126,7 @@ int main()
     // 翻转Y轴
     stbi_set_flip_vertically_on_load(true);
     
-    data = stbi_load("LearnTextures/awesomeface.png", &width, &height, &nrChannels, 0);
+    data = stbi_load("GettingStarted/LearnTextures/awesomeface.png", &width, &height, &nrChannels, 0);
     if(data)
     {
         // 生成纹理

@@ -19,7 +19,9 @@ enum Camera_Movement {
     FORWARD,
     BACKWARD,
     LEFT,
-    RIGHT
+    RIGHT,
+    UP,
+    DOWN
 };
 
 // 相机的默认参数
@@ -84,6 +86,11 @@ public:
             Position -= Right * velocity;
         if (direction == RIGHT)
             Position += Right * velocity;
+        if (direction == UP)
+            Position += WorldUp * velocity;
+        if (direction == DOWN) {
+            Position -= WorldUp * velocity;
+        }
     }
 
     // 处理鼠标输入
