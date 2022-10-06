@@ -1,34 +1,19 @@
 //
-//  CameraSystemNew.cpp
+//  3DCoordinateSystems.cpp
 //  LearnOpenGL
 //
-//  Created by Loyio Hex on 9/30/22.
+//  Created by Loyio Hex on 9/10/22.
 //
-
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "Common.h"
-#include "Shader.hpp"
-#include "camera.h"
+#include "Shader.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-
-// 相机
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-bool firstMouse = true;
-
-float lastX = 800.0f / 2.0;
-float lastY = 600.0 / 2.0;
-
-// 时间
-float deltaTime = 0.0f;
-float lastFrame = 0.0f;
 
 int main()
 {
@@ -53,20 +38,21 @@ int main()
         return -1;
     }
     
-    // 注册回调函数
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    glfwSetCursorPosCallback(window, mouse_callback);
-    glfwSetScrollCallback(window, scroll_callback);
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    
-    
     // 开启深度测试(Z-Buffer)
     glEnable(GL_DEPTH_TEST);
     
     // 导入编译Shader
-    Shader ourShader("CameraView/camera.vs", "CameraView/camera.fs");
+    Shader ourShader("GettingStarted/CoordinateSystem/coordinate.vs", "GettingStarted/CoordinateSystem/coordinate.fs");
     
     // 坐标
+//    float vertices[] =
+//    {
+//        // 位置               纹理坐标
+//         0.5f,  0.5f, 0.0f,  1.0f, 1.0f,
+//         0.5f, -0.5f, 0.0f,  1.0f, 0.0f,
+//        -0.5f, -0.5f, 0.0f,  0.0f, 0.0f,
+//        -0.5f,  0.5f, 0.0f,  0.0f, 1.0f
+//    };
     float vertices[] = {
         -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
          0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -123,14 +109,24 @@ int main()
         glm::vec3( 1.5f,  0.2f, -1.5f),
         glm::vec3(-1.3f,  1.0f, -1.5f)
     };
+//    unsigned int indices[] =
+//    {
+//        0, 1, 3, // 三角形1
+//        1, 2, 3  // 三角形2
+//    };
     unsigned int VBO, VAO;
+//    unsigned int EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
+//    glGenBuffers(1, &EBO);
     
     glBindVertexArray(VAO);
     
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    
+//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+//    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
     // 位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -157,7 +153,7 @@ int main()
     
     // 导入图像-箱子
     int width, height, nrChannels;
-    unsigned char *data = stbi_load("LearnTextures/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("GettingStarted/LearnTextures/container.jpg", &width, &height, &nrChannels, 0);
     if(data)
     {
         // 生成纹理
@@ -188,7 +184,7 @@ int main()
     // 翻转Y轴
     stbi_set_flip_vertically_on_load(true);
     
-    data = stbi_load("LearnTextures/awesomeface.png", &width, &height, &nrChannels, 0);
+    data = stbi_load("GettingStarted/LearnTextures/awesomeface.png", &width, &height, &nrChannels, 0);
     if(data)
     {
         // 生成纹理
@@ -206,17 +202,9 @@ int main()
     ourShader.setInt("texture1", 0);
     ourShader.setInt("texture2", 1);
     
-    // 传递投影矩阵到着色器
-//    glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)800/(float)600, 0.1f, 100.f);
-//    ourShader.setMat4("projection", projection);
     
     while(!glfwWindowShouldClose(window))
     {
-        // 计算deltatime
-        float currentFrame = static_cast<float>(glfwGetTime());
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
-        
         // 处理输入
         processInput(window);
         
@@ -233,15 +221,54 @@ int main()
         // 激活着色器
         ourShader.use();
         
-        // 摄像机变换
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)800/(float)600, 0.1f, 100.0f);
-        ourShader.setMat4("projection", projection);
         
-        glm::mat4 view  = camera.GetViewMatrix();
-        ourShader.setMat4("view", view);
+        // model
+//        glm::mat4 model = glm::mat4(1.0f);
+////        model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+//        model = glm::rotate(model, float(glfwGetTime()), glm::vec3(0.5f, 1.0f, 0.0f));
+        
+        // view 右手坐标系，正Z轴穿过屏幕朝向我们
+        /*
+         
+                 +Y     -Z
+                  |     /
+                  |    /
+                  |   /
+                  |  /
+                  | /
+    -X  - - - - - O - - - - - - - - -> +X
+                 /|
+                / |
+               /  |
+              /   |
+             /    |
+            +Z    -Y
+         
+         */
+        glm::mat4 view = glm::mat4(1.0f);
+        // 相机向后，则矩阵向反方向移动
+        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+        
+        // Projection
+        glm::mat4 projection = glm::mat4(1.0f);
+        projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+        
+        
+        // 将矩阵传入着色器
+//        unsigned int modelLoc = glGetUniformLocation(ourShader.ID, "model");
+//        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        
+        unsigned int viewLoc = glGetUniformLocation(ourShader.ID, "view");
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        
+        int projectionLoc = glGetUniformLocation(ourShader.ID, "projection");
+        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        
         
         // 渲染木箱
         glBindVertexArray(VAO);
+//        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+//        glDrawArrays(GL_TRIANGLES, 0, 36); // 画36个顶点
         // 更多的立方体
         for (unsigned int i = 0; i < 10; i++) {
             glm::mat4 model = glm::mat4(1.0f);
@@ -261,6 +288,7 @@ int main()
     
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+//    glDeleteBuffers(1, &EBO);
     
     
     glfwTerminate();
@@ -277,38 +305,4 @@ void processInput(GLFWwindow* window)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime);
-    if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime);
-    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, deltaTime);
-    if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, deltaTime);
 }
-
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
-{
-    float xpos = static_cast<float>(xposIn);
-    float ypos = static_cast<float>(yposIn);
-    
-    if(firstMouse)
-    {
-        lastX = xpos;
-        lastY = ypos;
-        firstMouse = false;
-    }
-    
-    float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos; // y坐标是从底部往顶部一次增大的
-    lastX = xpos;
-    lastY = ypos;
-    
-    camera.ProcessMouseMovement(xoffset, yoffset);
-}
-
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
-    camera.ProcessMouseScroll(static_cast<float>(yoffset));
-}
-

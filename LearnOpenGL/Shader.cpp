@@ -5,7 +5,7 @@
 //  Created by Loyio Hex on 9/5/22.
 //
 
-#include "Shader.hpp"
+#include "Shader.h"
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath)
 {

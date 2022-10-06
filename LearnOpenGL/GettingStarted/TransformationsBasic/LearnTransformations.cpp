@@ -8,7 +8,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "Common.h"
-#include "Shader.hpp"
+#include "Shader.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -51,7 +51,7 @@ int main()
     }
     
     // 导入编译Shader
-    Shader ourShader("TransformationsBasic/transform.vs", "TransformationsBasic/transform.fs");
+    Shader ourShader("GettingStarted/TransformationsBasic/transform.vs", "GettingStarted/TransformationsBasic/transform.fs");
     
     // 坐标
     float vertices[] =
@@ -105,7 +105,7 @@ int main()
     
     // 导入图像-箱子
     int width, height, nrChannels;
-    unsigned char *data = stbi_load("LearnTextures/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("GettingStarted/LearnTextures/container.jpg", &width, &height, &nrChannels, 0);
     if(data)
     {
         // 生成纹理
@@ -136,7 +136,7 @@ int main()
     // 翻转Y轴
     stbi_set_flip_vertically_on_load(true);
     
-    data = stbi_load("LearnTextures/awesomeface.png", &width, &height, &nrChannels, 0);
+    data = stbi_load("GettingStarted/LearnTextures/awesomeface.png", &width, &height, &nrChannels, 0);
     if(data)
     {
         // 生成纹理

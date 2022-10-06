@@ -6,7 +6,7 @@
 //
 
 #include "Common.h"
-#include "Shader.hpp"
+#include "Shader.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -39,7 +39,7 @@ int main()
     std::cout << "Maximum nr of vertex attributes supported: " << nrAttributes << std::endl;
     
     // 着色器
-    Shader ourShader("LearnShader/shader/shader.vs", "LearnShader/shader/shader.fs");
+    Shader ourShader("GettingStarted/LearnShader/shader/shader.vs", "GettingStarted/LearnShader/shader/shader.fs");
     
     // 三角形
     float vertices[] =
