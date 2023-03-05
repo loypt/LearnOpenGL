@@ -109,6 +109,13 @@
 		4E79887028EE8A4D00FDD346 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860028C433BC00D057B5 /* CoreFoundation.framework */; };
 		4E79887128EE8A4D00FDD346 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6885FE28C433B300D057B5 /* OpenGL.framework */; };
 		4E79887728EE8A5E00FDD346 /* CameraSystemClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E0380FE28E73CBC008B0D54 /* CameraSystemClass.cpp */; };
+		4E995E6429B465F900C36590 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE229C28C644C300E0A419 /* Shader.cpp */; };
+		4E995E6529B465F900C36590 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E68862628C4591000D057B5 /* glad.c */; };
+		4E995E6729B465F900C36590 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860428C433D400D057B5 /* libglfw.3.3.dylib */; };
+		4E995E6829B465F900C36590 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860228C433C900D057B5 /* libGLEW.2.2.0.dylib */; };
+		4E995E6929B465F900C36590 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E68860028C433BC00D057B5 /* CoreFoundation.framework */; };
+		4E995E6A29B465F900C36590 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6885FE28C433B300D057B5 /* OpenGL.framework */; };
+		4E995E7229B4666C00C36590 /* IndexedDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E995E7129B4666C00C36590 /* IndexedDraw.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -238,6 +245,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		4E995E6B29B465F900C36590 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -312,6 +328,10 @@
 		4E79885628EE892000FDD346 /* CoordinateSystem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CoordinateSystem; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E79886628EE89C800FDD346 /* CameraSystem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CameraSystem; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E79887628EE8A4D00FDD346 /* CameraSystemClass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CameraSystemClass; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E995E6F29B465F900C36590 /* OGLDEV-IndexedDraw */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OGLDEV-IndexedDraw"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E995E7129B4666C00C36590 /* IndexedDraw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IndexedDraw.cpp; sourceTree = "<group>"; };
+		4E995E7329B4674200C36590 /* shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
+		4E995E7429B4675000C36590 /* shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 		4EAE229328C637AA00E0A419 /* LearnShaders.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LearnShaders.cpp; sourceTree = "<group>"; };
 		4EAE229728C6387800E0A419 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		4EAE229C28C644C300E0A419 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
@@ -485,6 +505,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4E995E6629B465F900C36590 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E995E6729B465F900C36590 /* libglfw.3.3.dylib in Frameworks */,
+				4E995E6829B465F900C36590 /* libGLEW.2.2.0.dylib in Frameworks */,
+				4E995E6929B465F900C36590 /* CoreFoundation.framework in Frameworks */,
+				4E995E6A29B465F900C36590 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -650,6 +681,7 @@
 				4E3E56A128EED344001002FA /* Material */,
 				4E3E56B928EEDA52001002FA /* LightingMaps */,
 				4E3E56D528EEE35F001002FA /* LightCastersDirectional */,
+				4E995E6F29B465F900C36590 /* OGLDEV-IndexedDraw */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -657,6 +689,7 @@
 		4E6885F528C4339E00D057B5 /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				4E995E7029B4661C00C36590 /* OGLDEV */,
 				4E3E567728EECE7A001002FA /* ImGuiTest */,
 				4E7987F328EE7B5D00FDD346 /* GettingStarted */,
 				4E03810028E73D1E008B0D54 /* Light */,
@@ -705,6 +738,24 @@
 				4EAE229928C63AA100E0A419 /* HelloTriangle */,
 			);
 			path = GettingStarted;
+			sourceTree = "<group>";
+		};
+		4E995E7029B4661C00C36590 /* OGLDEV */ = {
+			isa = PBXGroup;
+			children = (
+				4E995E7629B4860C00C36590 /* IndexedDraw */,
+			);
+			path = OGLDEV;
+			sourceTree = "<group>";
+		};
+		4E995E7629B4860C00C36590 /* IndexedDraw */ = {
+			isa = PBXGroup;
+			children = (
+				4E995E7129B4666C00C36590 /* IndexedDraw.cpp */,
+				4E995E7329B4674200C36590 /* shader.vs */,
+				4E995E7429B4675000C36590 /* shader.fs */,
+			);
+			path = IndexedDraw;
 			sourceTree = "<group>";
 		};
 		4EAE229928C63AA100E0A419 /* HelloTriangle */ = {
@@ -1006,6 +1057,23 @@
 			productReference = 4E79887628EE8A4D00FDD346 /* CameraSystemClass */;
 			productType = "com.apple.product-type.tool";
 		};
+		4E995E6129B465F900C36590 /* OGLDEV-IndexedDraw */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E995E6C29B465F900C36590 /* Build configuration list for PBXNativeTarget "OGLDEV-IndexedDraw" */;
+			buildPhases = (
+				4E995E6229B465F900C36590 /* Sources */,
+				4E995E6629B465F900C36590 /* Frameworks */,
+				4E995E6B29B465F900C36590 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OGLDEV-IndexedDraw";
+			productName = LearnOpenGL;
+			productReference = 4E995E6F29B465F900C36590 /* OGLDEV-IndexedDraw */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1042,6 +1110,7 @@
 				4E3E569328EED344001002FA /* Material */,
 				4E3E56AB28EEDA52001002FA /* LightingMaps */,
 				4E3E56C728EEE35F001002FA /* LightCastersDirectional */,
+				4E995E6129B465F900C36590 /* OGLDEV-IndexedDraw */,
 			);
 		};
 /* End PBXProject section */
@@ -1188,6 +1257,16 @@
 				4E79887728EE8A5E00FDD346 /* CameraSystemClass.cpp in Sources */,
 				4E79886B28EE8A4D00FDD346 /* Shader.cpp in Sources */,
 				4E79886C28EE8A4D00FDD346 /* glad.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E995E6229B465F900C36590 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E995E6429B465F900C36590 /* Shader.cpp in Sources */,
+				4E995E6529B465F900C36590 /* glad.c in Sources */,
+				4E995E7229B4666C00C36590 /* IndexedDraw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1960,6 +2039,51 @@
 			};
 			name = Release;
 		};
+		4E995E6D29B465F900C36590 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LearnOpenGL/LearnOpenGL.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/glew/2.2.0_1/lib,
+					/opt/homebrew/Cellar/glfw/3.3.8/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4E995E6E29B465F900C36590 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LearnOpenGL/LearnOpenGL.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/glew/2.2.0_1/lib,
+					/opt/homebrew/Cellar/glfw/3.3.8/lib,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2094,6 +2218,15 @@
 			buildConfigurations = (
 				4E79887428EE8A4D00FDD346 /* Debug */,
 				4E79887528EE8A4D00FDD346 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E995E6C29B465F900C36590 /* Build configuration list for PBXNativeTarget "OGLDEV-IndexedDraw" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E995E6D29B465F900C36590 /* Debug */,
+				4E995E6E29B465F900C36590 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
